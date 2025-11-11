@@ -3,11 +3,11 @@
 FROM node:22-alpine
 
 # Define the image author (optional)
-LABEL maintainer="Copilot Agent"
+LABEL maintainer="Felipe Sayão Lobato Abreu <github@mentordosnerds.com>"
 
 # Install the GitHub Copilot CLI globally
 # Node 22 already comes with npm v10+, so no extra step is needed
-RUN npm install -g @github/copilot-cli
+RUN npm install -g @github/copilot
 
 # Set the default working directory for when the container runs
 WORKDIR /work
