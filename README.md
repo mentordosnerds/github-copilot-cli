@@ -30,14 +30,14 @@ It works by:
 The `node` user in the container has its home at `/home/node`. We map host configurations to this directory.
 
 ```bash
-docker run -it --rm 
-  -u "$(id -u):$(id -g)" 
-  -v "$(pwd):/work" 
-  -w /work 
-  -v "$HOME/.config:/home/node/.config" 
-  -v "$HOME/.gitconfig:/home/node/.gitconfig:ro" 
-  -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK 
-  -v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK 
+docker run -it --rm --quiet --pull=always \
+  -u "$(id -u):$(id -g)" \
+  -v "$(pwd):/work" \
+  -w /work \
+  -v "$HOME/.config:/home/node/.config" \
+  -v "$HOME/.gitconfig:/home/node/.gitconfig:ro" \
+  -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK \
+  -v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK \
   ghcr.io/mentordosnerds/github-copilot-cli:latest [COMMAND]
 ```
 Replace `[COMMAND]` with the Copilot command you want to run (e.g., `auth`, `explain`, etc.).
@@ -49,14 +49,14 @@ Replace `[COMMAND]` with the Copilot command you want to run (e.g., `auth`, `exp
 For the best experience, create a shell alias. This will make the `copilot` command transparently execute the fully configured Docker container.
 
 ```bash
-alias copilot='docker run -it --rm 
-  -u "$(id -u):$(id -g)" 
-  -v "$(pwd):/work" 
-  -w /work 
-  -v "$HOME/.config:/home/node/.config" 
-  -v "$HOME/.gitconfig:/home/node/.gitconfig:ro" 
-  -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK 
-  -v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK 
+alias copilot='docker run -it --rm --quiet --pull=always \
+  -u "$(id -u):$(id -g)" \
+  -v "$(pwd):/work" \
+  -w /work \
+  -v "$HOME/.config:/home/node/.config" \
+  -v "$HOME/.gitconfig:/home/node/.gitconfig:ro" \
+  -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK \
+  -v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK \
   ghcr.io/mentordosnerds/github-copilot-cli:latest'
 ```
 
