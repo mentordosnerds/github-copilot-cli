@@ -16,6 +16,7 @@ jobs:
 
   delete-old-images:
     runs-on: ubuntu-latest
+    needs: build-and-push
     steps:
       - uses: bots-house/ghcr-delete-image-action@v1.1.0
         with:
