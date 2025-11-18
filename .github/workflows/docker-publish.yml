@@ -21,6 +21,6 @@ jobs:
       - uses: bots-house/ghcr-delete-image-action@v1.1.0
         with:
           owner: ${{ github.repository_owner }}
-          name: github-copilot-cli
+          name: ${{ github.event.repository.name }}
           token: ${{ github.token }}
           untagged-keep-latest: 3
