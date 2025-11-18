@@ -56,17 +56,12 @@ jobs:
           build-args: |
             CACHE_BUSTER=${{ github.sha }}-${{ github.run_id }}
 
-      - name: Delete old images from GHCR
-        uses: snok/container-retention-policy@v1
+      - uses: bots-house/ghcr-delete-image-action@v1.1.0
         with:
-          # Your Personal Access Token (PAT) with read:packages and delete:packages permissions
-          # Store this as a repository secret (e.g., GHCR_PAT)
-          token: ${{ github.token }} 
-          # The owner of the repository (e.g., your username or organization name)
-          repository_owner: ${{ github.repository_owner }}
-          # The name of the package/image to clean up (optional)
-          package_name: ${{ github.repository }} 
-          # Delete untagged images (default is true)
-          delete_untagged: true
-          # Keep at most a certain number of tagged images (optional)
-          keep_at_most: 5 
+          # NOTE: at now only orgs is supported
+          owner: ${{ github.repository_owner }}
+          name: github-copilot-cli
+          # NOTE: using Personal Access Token
+          token: ${{ github.token }}
+          # Keep latest N untagged images
+          untagged-keep-latest: 3
