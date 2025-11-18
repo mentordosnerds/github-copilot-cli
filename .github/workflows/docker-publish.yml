@@ -44,8 +44,6 @@ jobs:
           tags: |
             # Generate the 'latest' tag
             type=raw,value=latest,enable={{is_default_branch}}
-            # Generate a tag with the commit SHA
-            type=sha
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
