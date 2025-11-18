@@ -55,3 +55,18 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             CACHE_BUSTER=${{ github.sha }}-${{ github.run_id }}
+
+      - name: Delete old images from GHCR
+        uses: snok/container-retention-policy@v1
+        with:
+          # Your Personal Access Token (PAT) with read:packages and delete:packages permissions
+          # Store this as a repository secret (e.g., GHCR_PAT)
+          token: ${{ github.token }} 
+          # The owner of the repository (e.g., your username or organization name)
+          repository_owner: ${{ github.repository_owner }}
+          # The name of the package/image to clean up (optional)
+          package_name: ${{ github.repository }} 
+          # Delete untagged images (default is true)
+          delete_untagged: true
+          # Keep at most a certain number of tagged images (optional)
+          keep_at_most: 5 
