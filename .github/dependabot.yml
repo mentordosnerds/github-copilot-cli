@@ -8,6 +8,9 @@ updates:
       github-actions:
         patterns:
           - "*"
+    labels:
+      - dependencies
+      - github-actions
   - package-ecosystem: docker
     directory: /
     schedule:
@@ -16,3 +19,6 @@ updates:
       docker-images:
         patterns:
           - "*"
+    labels:
+      - dependencies
+      - docker
