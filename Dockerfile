@@ -1,5 +1,5 @@
 # Stage 1: Base with a potentially cached installation
-FROM node:22-slim AS base
+FROM node:26-slim AS base
 RUN npm install -g @github/copilot
 
 # Stage 2: Updater to fetch the latest version
@@ -8,7 +8,7 @@ ARG CACHE_BUSTER
 RUN npm update -g @github/copilot
 
 # Final Stage: Create a clean, final image
-FROM node:22-slim
+FROM node:26-slim
 LABEL maintainer="Felipe Sayão Lobato Abreu <github@mentordosnerds.com>"
 
 # Install sudo for dropping privileges, then clean up
